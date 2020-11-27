@@ -1,27 +1,40 @@
-import React,{Component} from 'react';
-import {Text,View,Button} from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default class App extends Component
-{
-   Task1=()=>
-   {
-     alert("Welcome to Chennai");
-   }
+const App = () => {
+  const [count, setCount] = useState(0);
+  const onPress = () => setCount(prevCount => prevCount + 1);
 
-   Task2=(Num)=>
-   {
-     alert(Num);
-   }
-
-  render()
-  {
-    return(
-      <View>
-        <Button title="Button1" onPress={this.Task1}></Button>
-
-        <Button title="Button2" onPress={this.Task2.bind(this,100)}></Button>
+  return (
+    <View style={styles.container}>
+      <View style={styles.countContainer}>
+        <Text>Count: {count}</Text>
       </View>
-    );
+      <TouchableOpacity
+        style={styles.button}
+        onPress={onPress}
+      >
+        <Text>Click here</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    paddingHorizontal: 10
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#FFFF00",
+    padding: 10
+  },
+  countContainer: {
+    alignItems: "center",
+    padding: 50
   }
-}
-       
+});
+
+export default App;
