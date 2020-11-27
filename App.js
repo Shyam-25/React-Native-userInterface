@@ -1,27 +1,48 @@
-import React,{Component} from 'react';
-import {Text,View,Button} from 'react-native';
+import React from 'react';
+import { View, KeyboardAvoidingView, TextInput, StyleSheet, Text, Platform, TouchableWithoutFeedback, Button, Keyboard  } from 'react-native';
 
-export default class App extends Component
-{
-   Task1=()=>
-   {
-     alert("Welcome to Chennai");
-   }
+const Example = () => {
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.android == "android" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.inner}>
+          <Text style={styles.header}>Welcome</Text>
+          <TextInput placeholder="Username" style={styles.textInput} />
+          <View style={styles.btnContainer}>
+            <Button title="Submit" onPress={() => null} />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  );
+};
 
-   Task2=(Num)=>
-   {
-     alert(Num);
-   }
-
-  render()
-  {
-    return(
-      <View>
-        <Button title="Button1" onPress={this.Task1}></Button>
-
-        <Button title="Button2" onPress={this.Task2.bind(this,100)}></Button>
-      </View>
-    );
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  inner: {
+    padding: 24,
+    flex: 1,
+    justifyContent: "space-around"
+  },
+  header: {
+    fontSize: 36,
+    marginBottom: 48
+  },
+  textInput: {
+    height: 50,
+    borderColor: "#000000",
+    borderBottomWidth: 1,
+    marginBottom: 36
+  },
+  btnContainer: {
+    backgroundColor: "white",
+    marginTop: 12
   }
-}
-       
+});
+
+export default Example;
